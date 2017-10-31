@@ -1,0 +1,10 @@
+- name: Test 
+  hosts: servers
+  gather_facts: false
+  tasks:
+      - name: Test 
+        command: df -h
+        register: output
+      - debug: msg='{{output.stdout_lines}} | Mailx -s "{{ ansible_ssh_host }} Info space" usuario@ejemplo.com'
+      - name: Send mail with mailx
+        command: '{{output.stdout_lines}} | Mailx -s "{{ ansible_ssh_host }} Info space" usuario@ejemplo.com'
