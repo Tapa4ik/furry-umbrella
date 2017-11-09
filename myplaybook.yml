@@ -1,0 +1,8 @@
+---
+- hosts: all
+  remote_user: dar
+  tasks:
+  - name: check the disp space
+    command: df -h
+    register: h
+  - debug: var=h.stdout_lines
